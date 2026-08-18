@@ -8,7 +8,8 @@ const aliases = {
 };
 
 function input(name, fallback) {
-  const value = process.env[`INPUT_${name.replaceAll("-", "_").toUpperCase()}`];
+  const upperName = name.toUpperCase();
+  const value = process.env[`INPUT_${upperName}`] ?? process.env[`INPUT_${upperName.replaceAll("-", "_")}`];
   return value == null || value === "" ? fallback : value;
 }
 

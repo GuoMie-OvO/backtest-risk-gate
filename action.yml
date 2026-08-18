@@ -42,5 +42,5 @@ outputs:
   profit-factor:
     description: Calculated profit factor.
 runs:
-  using: node20
+  using: node24
   main: index.js
