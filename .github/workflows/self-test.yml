@@ -1,0 +1,24 @@
+name: Self test
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm test
+      - name: Run the action against a healthy fixture
+        uses: ./
+        with:
+          csv-path: test/fixtures/healthy.csv
+          initial-capital: "10000"
+          max-drawdown-pct: "20"
+          min-profit-factor: "1.2"
+          min-trades: "10"
+          extra-cost-per-trade: "2"
