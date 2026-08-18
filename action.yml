@@ -1,0 +1,46 @@
+name: Backtest Risk Gate Audit
+description: Fail risky trading-strategy changes using drawdown, profit factor, sample size, and transaction-cost stress gates.
+author: GuoMie-OvO
+branding:
+  icon: activity
+  color: red
+inputs:
+  csv-path:
+    description: Path to a trade CSV containing date/time and pnl/profit columns. fee is optional.
+    required: true
+  initial-capital:
+    description: Initial capital used to calculate drawdown percentage.
+    required: false
+    default: "100000"
+  max-drawdown-pct:
+    description: Fail when maximum drawdown exceeds this percentage.
+    required: false
+    default: "20"
+  min-profit-factor:
+    description: Fail when profit factor is below this value.
+    required: false
+    default: "1.2"
+  min-trades:
+    description: Fail when the CSV contains fewer trades than this value.
+    required: false
+    default: "30"
+  extra-cost-per-trade:
+    description: Additional slippage/fee stress deducted from every trade.
+    required: false
+    default: "0"
+  require-stress-profit:
+    description: Fail when net profit after extra-cost stress is not positive.
+    required: false
+    default: "true"
+outputs:
+  passed:
+    description: Whether every configured gate passed.
+  score:
+    description: Risk score from 0 to 100.
+  max-drawdown-pct:
+    description: Calculated maximum drawdown percentage.
+  profit-factor:
+    description: Calculated profit factor.
+runs:
+  using: node20
+  main: index.js

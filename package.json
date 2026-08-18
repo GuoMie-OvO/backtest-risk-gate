@@ -1,0 +1,8 @@
+{
+  "name": "backtest-risk-gate",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A dependency-free GitHub Action that blocks risky backtest changes.",
+  "scripts": { "test": "node --test" },
+  "license": "MIT"
+}
